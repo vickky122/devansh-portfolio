@@ -15,12 +15,19 @@ settings changes.
 `*.vercel.app` address), so the sitemap, canonical URL, Open Graph card and structured data are correct without any
 setting. Set `NEXT_PUBLIC_SITE_URL` only if you want to force a different address.
 
-Live production address (first deploy): https://devansh-portfolio-theta-nine.vercel.app
+Live production address: **https://devansh-singha.vercel.app** (renamed in Vercel, Settings, Domains; the old
+`devansh-portfolio-theta-nine.vercel.app` redirects to it). Deployment protection (Vercel Login) is switched off so the
+links open the site directly.
 
 ## 3. Custom domain (optional, can come later)
 1. Pick a domain (the plan suggests checking `devanshsingha.dev` or similar) and buy it from any registrar.
 2. Vercel, Project, **Settings, Domains**: add it and set the DNS records Vercel shows. Wait for the certificate.
 3. Nothing else to change: the next deploy picks the new domain up automatically.
+
+## Commit identity matters on Vercel
+On the Hobby plan, Vercel only builds commits whose author is the account owner. Commits authored under any other
+GitHub identity (for example a work account) show as **Blocked** and never deploy. This repo is configured to commit
+as `vickky122 <95705066+vickky122@users.noreply.github.com>` (repo-local git config).
 
 ## Things to decide first
 - [ ] **Resume PDF:** `public/Devansh-Singha-Resume.pdf` is in the repo and will be public once deployed
