@@ -1,26 +1,198 @@
 @import "tailwindcss";
+@import "./tokens.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Only the four brand colours exist; the default Tailwind palette is switched off on purpose. */
+@theme {
+  --color-*: initial;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-crimson: var(--crimson);
+  --color-washi: var(--washi);
+  --color-sumi: var(--sumi);
+  --color-gold: var(--gold);
+
+  --font-display: var(--ff-display);
+  --font-sans: var(--ff-body);
+  --font-mono: var(--ff-label);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * No CSS Modules in this project: the scaffold's Turbopack rule sends every *.css file through the
+ * Tailwind loader, which strips module semantics (class names come back undefined). Component styles
+ * live here instead, namespaced by block name (.frame, .ink-edge, ...).
+ */
+
+@layer base {
+  html {
+    background: var(--washi);
+  }
+
+  body {
+    min-height: 100svh;
+    font-family: var(--ff-body);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* <InkReveal> stays hidden until its split is ready, so there is no flash of unrevealed text */
+  [data-ink="pending"] {
+    visibility: hidden;
+  }
+
+  ::selection {
+    background: var(--crimson);
+    color: var(--washi);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* surfaces: set background (with paper grain), text, focus ring and ink-edge colour together */
+  .surface-washi,
+  .surface-crimson,
+  .surface-sumi {
+    background-image: var(--grain-light), var(--grain-dark);
+    background-size: 240px 240px;
+  }
+  .surface-washi {
+    background-color: var(--washi);
+    color: var(--sumi);
+    --focus: var(--crimson);
+    --edge: var(--sumi);
+  }
+  .surface-crimson {
+    background-color: var(--crimson);
+    color: var(--washi);
+    --focus: var(--washi);
+    --edge: var(--sumi);
+  }
+  .surface-sumi {
+    background-color: var(--sumi);
+    color: var(--washi);
+    --focus: var(--washi);
+    --edge: var(--crimson);
+  }
+
+  /* type scale: giant condensed caps for names, h1-h3 in the display face, body sans, lowercase mono labels */
+  .t-giant {
+    font-family: var(--ff-display);
+    font-size: var(--fs-giant);
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+  .t-h1,
+  .t-h2,
+  .t-h3 {
+    font-family: var(--ff-display);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.005em;
+  }
+  .t-h1 {
+    font-size: var(--fs-h1);
+  }
+  .t-h2 {
+    font-size: var(--fs-h2);
+  }
+  .t-h3 {
+    font-size: var(--fs-h3);
+    line-height: 1.05;
+  }
+  .t-body {
+    font-size: var(--fs-body);
+    line-height: 1.6;
+  }
+  .t-small {
+    font-size: var(--fs-small);
+    line-height: 1.5;
+  }
+  .t-label {
+    font-family: var(--ff-label);
+    font-size: var(--fs-label);
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+  }
+
+  /*
+   * The frame: a 1px line inset from the viewport edge, vertical side labels in the gutter, a counter.
+   * Fixed over the viewport by default; [data-contained] fits it to a positioned parent (previews).
+   */
+  .frame {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    color: var(--washi);
+  }
+  .frame[data-tone="ink"] {
+    color: var(--sumi);
+  }
+  .frame[data-contained] {
+    position: absolute;
+    z-index: 1;
+  }
+  .frame__line {
+    position: absolute;
+    inset: var(--frame-inset);
+    border: var(--frame-line) solid currentColor;
+  }
+  /* side labels sit in the gutter between the line and the viewport edge; phones have no room for them */
+  .frame__rail {
+    position: absolute;
+    top: 50%;
+    display: none;
+    width: var(--frame-inset);
+    line-height: var(--frame-inset);
+    text-align: center;
+    white-space: nowrap;
+    writing-mode: vertical-rl;
+  }
+  .frame__rail--left {
+    left: 0;
+    transform: translateY(-50%) rotate(180deg);
+  }
+  .frame__rail--right {
+    right: 0;
+    transform: translateY(-50%);
+  }
+  @media (min-width: 768px) {
+    .frame__rail {
+      display: block;
+    }
+  }
+  .frame__counter {
+    position: absolute;
+    top: calc(var(--frame-inset) + 0.75rem);
+    right: calc(var(--frame-inset) + 1rem);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* leading edge of the ink reveal: a dry-brush blot with a ragged left edge and a few stray bristles, riding the clip boundary */
+  .ink-edge {
+    position: absolute;
+    top: -4%;
+    bottom: -4%;
+    left: 0;
+    width: 0.9em;
+    background: var(--edge);
+    pointer-events: none;
+    will-change: transform;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' preserveAspectRatio='none'%3E%3Cpath d='M40 0H14V5H10V10H16V15H8V20H13V25H17V30H9V35H12V40H15V45H6V50H11V55H16V60H8V65H13V70H10V75H17V80H7V85H12V90H15V95H9V100H40ZM2 22H16V23.5H2ZM4 57H12V58.3H4ZM1 83H10V84.4H1Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' preserveAspectRatio='none'%3E%3Cpath d='M40 0H14V5H10V10H16V15H8V20H13V25H17V30H9V35H12V40H15V45H6V50H11V55H16V60H8V65H13V70H10V75H17V80H7V85H12V90H15V95H9V100H40ZM2 22H16V23.5H2ZM4 57H12V58.3H4ZM1 83H10V84.4H1Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  }
 }

@@ -1,0 +1,61 @@
+/*
+ * Design tokens — single source of truth for colour, type, frame and motion timing.
+ * Tailwind maps to these in globals.css. lib/palette.ts mirrors the hex values for
+ * the styleguide's contrast table; keep the two in sync.
+ */
+
+:root {
+  /* palette */
+  /* #c41e3a, not the briefed #d7263d: cream on it is 5.01:1 (AA at every size) vs 4.26:1 (large text only) */
+  --crimson: #c41e3a;
+  --washi: #f3ede2; /* washi cream */
+  --sumi: #161412; /* sumi ink */
+  --gold: #b08d57; /* thin lines only, never text on light surfaces */
+
+  /*
+   * Paper grain: two plain alpha tiles from the same noise, one of dark specks and one of light
+   * specks, layered into each surface's own background (see .surface-* in globals.css). They
+   * balance out, so the brand colours stay accurate on average, and they sit under content so
+   * text contrast is untouched. No blend modes: those rendered a grain-free box behind some
+   * elements in GPU-composited Chrome.
+   */
+  --grain-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='.2 .1 .03 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 .03 .1 .2'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* type families: Anton (names, headings) · Manrope (body) · JetBrains Mono (labels), all SIL OFL */
+  --ff-display: var(--font-anton), "Impact", "Arial Narrow", sans-serif;
+  --ff-body: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --ff-label: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
+
+  /* fluid type scale */
+  --fs-giant: clamp(4.5rem, min(26vw, 36vh), 26rem);
+  --fs-h1: clamp(2.75rem, 1.6rem + 5vw, 6.5rem);
+  --fs-h2: clamp(2.25rem, 1.5rem + 3.2vw, 4.5rem);
+  --fs-h3: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
+  --fs-body: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+  --fs-small: 0.875rem;
+  --fs-label: 0.75rem;
+
+  /* frame: 1px line inset from the viewport edge; side labels live in the gutter */
+  --frame-inset: 12px;
+  --frame-line: 1px;
+
+  /* motion timing for CSS transitions; mirrors lib/motion/motion.ts */
+  --ease-out: cubic-bezier(0.165, 0.84, 0.44, 1); /* power3.out */
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1); /* power3.inOut */
+  --dur-micro: 250ms;
+  --dur-ui: 500ms;
+  --dur-reveal: 1000ms;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --frame-inset: 24px;
+  }
+}
+
+/* /styleguide only: lets the grain be switched off to compare. */
+[data-grain="off"] {
+  --grain-dark: none;
+  --grain-light: none;
+}
