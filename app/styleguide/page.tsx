@@ -82,7 +82,7 @@ export default function StyleguidePage() {
     <StyleguideShell>
       <OptionSwitcher />
 
-      <main className="mx-auto max-w-6xl px-5 pb-24 md:px-12">
+      <main id="main" className="mx-auto max-w-6xl px-5 pb-24 md:px-12">
         <header className="py-16 md:py-24">
           <p className="t-label opacity-70">step 1 · design tokens</p>
           <h1 className="t-h1 mt-3">styleguide</h1>

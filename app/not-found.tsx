@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Not found" };
 /** 404, in the site's own style. */
 export default function NotFound() {
   return (
-    <main className="surface-crimson relative grid min-h-svh place-items-center px-10 py-28">
+    <main id="main" className="surface-crimson relative grid min-h-svh place-items-center px-10 py-28">
       <Frame
         chapter={1}
         total={content.chapters.length}

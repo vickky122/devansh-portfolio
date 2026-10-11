@@ -118,7 +118,8 @@ export function ShojiProvider({ children }: { children: ReactNode }) {
   return (
     <Ctx.Provider value={value}>
       {children}
-      <div ref={root} aria-hidden="true" className="pointer-events-none fixed inset-0 z-90">
+      {/* visibility:hidden from the first byte: until hydration the doors must not flash over the page */}
+      <div ref={root} aria-hidden="true" style={{ visibility: "hidden" }} className="pointer-events-none fixed inset-0 z-90">
         <div data-shoji="left" className="shoji surface-washi absolute inset-y-0 left-0 w-1/2" />
         <div data-shoji="right" className="shoji surface-washi absolute inset-y-0 right-0 w-1/2" />
       </div>

@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Devansh Singha: portfolio
 
-## Getting Started
+A cinematic, Japanese-editorial portfolio told as one scroll in six numbered chapters, "The Path":
+intro, profile, journey, works, craft, contact. Next.js (App Router) + TypeScript, Tailwind CSS 4,
+Lenis smooth scroll and GSAP (ScrollTrigger, SplitText, DrawSVG). No 3D. All wording is English.
 
-First, run the development server:
+> Status: built end to end, with placeholders. Anything not yet supplied shows as a visible dashed **TODO**
+> (see "Content" below). Nothing on the page is invented.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build && npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Routes: `/` (the six chapters), `/works/[slug]` (case studies), `/styleguide` and `/lab` (internal pages:
+tokens, and each motion primitive on its own; both are `noindex` and disallowed in `robots.txt`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All copy lives in [`content/content.ts`](content/content.ts). Strings equal to `"TODO"` render as a visible
+TODO, so missing copy can never pass for finished copy. Still to supply: the About lines, school names and
+one-liners for the journey, each project's problem / what was built / key decision / result / links,
+a one-liner per skill, email, LinkedIn, the resume path (`resumeUrl`), screenshots, and the real portrait art
+(see [`docs/portrait-image-prompt.md`](docs/portrait-image-prompt.md)).
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/            routes, layout, tokens.css, globals.css, sitemap / robots / icon / opengraph-image
+chapters/       Intro, Profile, Journey, Works, Craft, Contact
+components/     Frame, ChapterCounter, InkReveal, BrushLine, Loader, Nav, Cursor, ShojiTransition, ...
+hooks/          useReducedMotion
+lib/motion/     gsap.ts (plugin registration), motion.ts (eases, durations, reduced-motion twins)
+content/        content.ts
+docs/           portrait prompt, deploy checklist, LinkedIn post draft
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Palette:** crimson `#C41E3A`, washi cream `#F3EDE2`, sumi ink `#161412`, muted gold `#B08D57` for hairlines only.
+  Crimson was chosen over the briefed `#D7263D` because cream on it is 5.01:1 (AA at every size) rather than 4.26:1.
+- **Type:** Anton (names, headings), Manrope (body), JetBrains Mono (lowercase labels), all SIL OFL, self-hosted via `next/font`.
+- **Motion:** slow and deliberate, `power3.out`, nothing bounces. One text-reveal pattern (`InkReveal`) everywhere.
+  Every animation has a reduced-motion version that tells the same story calmly.
+- **Inspiration:** the structure and mood borrow from [Unifiers of Japan](https://unifiersofjapan.framer.website/)
+  by Tofu Design (full-bleed colour, a flat portrait with a giant split name behind it, a thin frame with
+  vertical labels, numbered chapters). This site uses none of its code, text or art, and keeps all wording in English.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See [`docs/DEPLOY.md`](docs/DEPLOY.md).

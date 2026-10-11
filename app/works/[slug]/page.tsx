@@ -62,7 +62,7 @@ async function Project({ params }: Pick<PageProps<"/works/[slug]">, "params">) {
         total={content.chapters.length}
         initial={{ number: 4, name: project.name }}
       />
-      <main>
+      <main id="main">
         <header
           data-chapter="4"
           data-chapter-name={project.name}

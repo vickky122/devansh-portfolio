@@ -17,7 +17,7 @@ const pad = "px-10 py-28 md:px-28";
 /** Each motion primitive on its own, inside the real frame, so it can be judged in isolation. */
 export default function LabPage() {
   return (
-    <main>
+    <main id="main">
       <ChapterCounter siteName={siteName} total={4} initial={{ number: 1, name: "ink reveal" }} />
       <LabStatus />
 

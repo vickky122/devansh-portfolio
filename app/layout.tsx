@@ -1,9 +1,12 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Anton, Manrope, JetBrains_Mono } from "next/font/google";
 import { Cursor } from "@/components/Cursor";
 import { LenisProvider } from "@/components/LenisProvider";
 import { Nav } from "@/components/Nav";
 import { ShojiProvider } from "@/components/ShojiTransition";
+import { content } from "@/content/content";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const anton = Anton({
@@ -25,8 +28,19 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const title = `${content.name.first} ${content.name.last}`;
+
 export const metadata: Metadata = {
-  title: "Devansh Singha",
+  metadataBase: new URL(siteUrl),
+  title: { default: title, template: `%s · ${title}` },
+  description: content.seo.description,
+  openGraph: {
+    type: "website",
+    siteName: title,
+    title,
+    description: content.seo.description,
+  },
+  twitter: { card: "summary_large_image", title, description: content.seo.description },
 };
 
 // Runs before first paint: a visitor who already saw the loader this session never sees it flash.
@@ -45,6 +59,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: LOADER_SKIP }} />
       </head>
       <body className="surface-washi">
+        <a
+          href="#main"
+          className="t-label surface-sumi sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:px-4 focus:py-2"
+        >
+          skip to content
+        </a>
         <noscript>
           <style>{`[data-ink] { visibility: visible !important; } .loader { display: none !important; }`}</style>
         </noscript>
@@ -55,6 +75,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </ShojiProvider>
         </LenisProvider>
         <Cursor />
+        <Analytics />
       </body>
     </html>
   );

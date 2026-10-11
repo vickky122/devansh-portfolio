@@ -114,6 +114,8 @@ export function InkReveal({
           SplitText.create(el, {
             type: "lines",
             autoSplit: true,
+            // "none": the default adds aria-label to the element (prohibited on <p>/<span>); the text stays readable as is
+            aria: "none",
             onSplit: (self) => adopt(buildInk(self.lines as HTMLElement[], m, delay)),
           });
         }

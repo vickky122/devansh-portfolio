@@ -63,6 +63,12 @@ export const content = {
   /** Path of the resume PDF under /public, e.g. "/resume.pdf". TODO until the user confirms which file to publish. */
   resumeUrl: TODO,
 
+  /** Used for the page description and social cards. Built only from facts in the brief; swap for the approved positioning line. */
+  seo: {
+    description:
+      "Portfolio of Devansh Singha, a 2024 B.Tech Computer Science graduate from Jorhat, Assam, open to associate systems engineer roles. Projects: NewsX and Mobile GNS with AI.",
+  },
+
   positioningLine: TODO, // Step 0: three options, Devansh approves one
 
   /** Chapter 02. Card facts are from the plan's site-structure table. */
