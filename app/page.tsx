@@ -1,5 +1,7 @@
 import { ChapterCounter } from "@/components/ChapterCounter";
 import { Loader } from "@/components/Loader";
+import { Contact } from "@/chapters/Contact";
+import { Craft } from "@/chapters/Craft";
 import { Intro } from "@/chapters/Intro";
 import { Journey } from "@/chapters/Journey";
 import { Profile } from "@/chapters/Profile";
@@ -8,7 +10,6 @@ import { content } from "@/content/content";
 
 const siteName = `${content.name.first} ${content.name.last}`.toLowerCase();
 
-/** Chapters 05 and 06 arrive in Steps 7 and 8. */
 export default function Home() {
   return (
     <>
@@ -23,6 +24,8 @@ export default function Home() {
         <Profile />
         <Journey />
         <Works />
+        <Craft />
+        <Contact />
       </main>
     </>
   );

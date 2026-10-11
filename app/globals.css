@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+/* matches only when a wide screen AND motion is allowed: used for layouts that pin and animate (Craft) */
+@custom-variant stack (@media (min-width: 768px) and (prefers-reduced-motion: no-preference));
+
 /* Only the four brand colours exist; the default Tailwind palette is switched off on purpose. */
 @theme {
   --color-*: initial;
