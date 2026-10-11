@@ -36,12 +36,14 @@ export function ChapterCounter({ siteName, total, initial }: ChapterCounterProps
       const mm = gsap.matchMedia();
       mm.add({ calm: MQ.reduce, full: MQ.noPreference }, (ctx) => {
         const m: MotionSet = ctx.conditions?.calm ? motion.reduced : motion.full;
-        let current = -1;
+        let current = "";
 
         const apply = (section: HTMLElement) => {
           const number = Number(section.dataset.chapter);
-          if (number === current) return;
-          current = number;
+          // chapter 04 holds one section per project: the name (and tone) can change within a number
+          const key = `${number}|${section.dataset.chapterName}|${section.dataset.chapterTone}`;
+          if (key === current) return;
+          current = key;
 
           counter.textContent = pad(number);
           rail.textContent = section.dataset.chapterName ?? "";

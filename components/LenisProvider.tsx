@@ -30,7 +30,7 @@ export function LenisProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (reduced) return;
 
-    const lenis = new Lenis({ autoRaf: false, duration: 1.1 });
+    const lenis = new Lenis({ autoRaf: false, duration: 1.1, anchors: true });
     const tick = (time: number) => lenis.raf(time * 1000);
 
     lenis.on("scroll", ScrollTrigger.update);

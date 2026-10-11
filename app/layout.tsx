@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Manrope, JetBrains_Mono } from "next/font/google";
 import { Cursor } from "@/components/Cursor";
 import { LenisProvider } from "@/components/LenisProvider";
+import { ShojiProvider } from "@/components/ShojiTransition";
 import "./globals.css";
 
 const anton = Anton({
@@ -46,7 +47,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <noscript>
           <style>{`[data-ink] { visibility: visible !important; } .loader { display: none !important; }`}</style>
         </noscript>
-        <LenisProvider>{children}</LenisProvider>
+        <LenisProvider>
+          <ShojiProvider>{children}</ShojiProvider>
+        </LenisProvider>
         <Cursor />
       </body>
     </html>
