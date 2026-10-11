@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { gsap, ScrollTrigger, SplitText, useGSAP } from "@/lib/motion/gsap";
 import { MQ, motion, trigger, type MotionSet } from "@/lib/motion/motion";
 
@@ -15,6 +15,12 @@ type InkRevealProps = {
   delay?: number;
   /** change this number to replay the reveal (used by demos) */
   replayToken?: number;
+  /**
+   * Hold the reveal until <html data-{gate}> exists and a "{gate}" event fires on window,
+   * e.g. gate="site-ready" waits for the loader's doors to open.
+   */
+  gate?: string;
+  style?: CSSProperties;
 };
 
 /** Lines unmask left to right; a ragged ink blot rides the leading edge, then fades. */
@@ -65,6 +71,8 @@ export function InkReveal({
   start = trigger.enter,
   delay = 0,
   replayToken = 0,
+  gate,
+  style,
 }: InkRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const timeline = useRef<gsap.core.Timeline | null>(null);
@@ -79,6 +87,10 @@ export function InkReveal({
         const calm = Boolean(ctx.conditions?.calm);
         const m: MotionSet = calm ? motion.reduced : motion.full;
         let entered = false;
+        const gateOpen = () => !gate || document.documentElement.hasAttribute(`data-${gate}`);
+        const tryPlay = () => {
+          if (entered && gateOpen()) timeline.current?.play();
+        };
 
         el.style.minHeight = `${el.offsetHeight}px`;
         const unlock = () => {
@@ -88,7 +100,7 @@ export function InkReveal({
         const adopt = (tl: gsap.core.Timeline) => {
           tl.eventCallback("onComplete", unlock);
           timeline.current = tl;
-          if (entered) tl.play();
+          if (entered && gateOpen()) tl.play();
           return tl;
         };
 
@@ -114,11 +126,13 @@ export function InkReveal({
           once: true,
           onEnter: () => {
             entered = true;
-            timeline.current?.play();
+            tryPlay();
           },
         });
+        if (gate) window.addEventListener(gate, tryPlay);
 
         return () => {
+          if (gate) window.removeEventListener(gate, tryPlay);
           unlock();
           el.dataset.ink = "pending";
         };
@@ -136,7 +150,7 @@ export function InkReveal({
   // The cast keeps the ref typing simple; every allowed tag is an HTMLElement.
   const Component = Tag as "div";
   return (
-    <Component ref={ref} className={className} data-ink="pending">
+    <Component ref={ref} className={className} style={style} data-ink="pending">
       {children}
     </Component>
   );

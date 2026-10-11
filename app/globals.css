@@ -37,6 +37,14 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* the loader holds the page still until its doors open; the head script skips it on repeat visits */
+  html[data-loading] {
+    overflow: hidden;
+  }
+  html[data-loader="skip"] .loader {
+    display: none;
+  }
+
   /* <InkReveal> stays hidden until its split is ready, so there is no flash of unrevealed text */
   [data-ink="pending"] {
     visibility: hidden;
@@ -84,6 +92,19 @@
     color: var(--washi);
     --focus: var(--washi);
     --edge: var(--crimson);
+  }
+
+  /* a shoji door: washi paper with a thin lattice, grain kept as the lowest layers */
+  .shoji {
+    background-image:
+      linear-gradient(90deg, color-mix(in srgb, var(--sumi) 14%, transparent) 1px, transparent 1px),
+      linear-gradient(color-mix(in srgb, var(--sumi) 14%, transparent) 1px, transparent 1px), var(--grain-light),
+      var(--grain-dark);
+    background-size:
+      33.3334% 100%,
+      100% 25%,
+      240px 240px,
+      240px 240px;
   }
 
   /* type scale: giant condensed caps for names, h1-h3 in the display face, body sans, lowercase mono labels */
@@ -188,7 +209,7 @@
     top: -4%;
     bottom: -4%;
     left: 0;
-    width: 0.9em;
+    width: var(--ink-edge-w, 0.9em);
     background: var(--edge);
     pointer-events: none;
     will-change: transform;

@@ -38,7 +38,13 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     gsap.ticker.lagSmoothing(0);
     lenisRef.current = lenis;
 
+    // The loader holds the page still; its "site-ready" event lets scrolling start.
+    if (document.documentElement.hasAttribute("data-loading")) lenis.stop();
+    const start = () => lenis.start();
+    window.addEventListener("site-ready", start);
+
     return () => {
+      window.removeEventListener("site-ready", start);
       gsap.ticker.remove(tick);
       lenis.destroy();
       lenisRef.current = null;

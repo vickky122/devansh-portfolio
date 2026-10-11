@@ -1,17 +1,31 @@
-import Link from "next/link";
+import { ChapterCounter } from "@/components/ChapterCounter";
+import { Loader } from "@/components/Loader";
+import { Intro } from "@/chapters/Intro";
 import { content } from "@/content/content";
 
-// Holding page. The loader and the intro chapter arrive in Step 3.
+const siteName = `${content.name.first} ${content.name.last}`.toLowerCase();
+
+/** Chapters 02 to 06 arrive in Steps 4 to 8; until then the page ends on a quiet placeholder. */
 export default function Home() {
   return (
-    <main className="surface-crimson flex min-h-svh flex-col items-start justify-end gap-6 p-8 md:p-16">
-      <p className="t-label">portfolio · in progress</p>
-      <h1 className="t-h1">
-        {content.name.first} {content.name.last}
-      </h1>
-      <Link href="/styleguide" className="t-label underline underline-offset-4">
-        open the styleguide
-      </Link>
-    </main>
+    <>
+      <Loader />
+      <ChapterCounter
+        siteName={siteName}
+        total={content.chapters.length}
+        initial={{ number: 1, name: content.chapters[0].name }}
+      />
+      <main>
+        <Intro />
+        <section
+          data-chapter="2"
+          data-chapter-name="profile"
+          data-chapter-tone="ink"
+          className="surface-washi flex min-h-svh items-center px-10 md:px-28"
+        >
+          <p className="t-label">02 · profile · built in step 4</p>
+        </section>
+      </main>
+    </>
   );
 }

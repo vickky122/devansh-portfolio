@@ -24,6 +24,17 @@ export const content = {
     { number: 6, slug: "contact", name: "contact" },
   ],
 
+  /** Chapter 01 labels. Wording comes from the plan's site-structure table and the brief; nothing invented. */
+  hero: {
+    role: "associate systems engineer",
+    location: "jorhat, assam",
+    availability: "open to work",
+    ctaWorks: "view works",
+    ctaResume: "resume",
+  },
+  /** Path of the resume PDF under /public, e.g. "/resume.pdf". TODO until the user confirms which file to publish. */
+  resumeUrl: TODO as string,
+
   positioningLine: TODO, // Step 0: three options, Devansh approves one
   about: TODO,
   email: TODO,
