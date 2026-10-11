@@ -20,6 +20,7 @@ const personJsonLd = {
   description: content.seo.description,
   address: { "@type": "PostalAddress", addressLocality: "Jorhat", addressRegion: "Assam", addressCountry: "IN" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Assam Kaziranga University" },
+  affiliation: { "@type": "CollegeOrUniversity", name: "Amity University, Noida" }, // current MBA student
   knowsAbout: content.craft.skills.map((skill) => skill.name),
 };
 

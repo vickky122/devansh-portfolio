@@ -1,9 +1,10 @@
 /**
- * Site content. Source: the build plan, the brief, and Devansh's resume (DevanshSinghaResume.pdf).
+ * Site content. Source: the build plan, the brief, Devansh's resume (DevanshSinghaResume.pdf), and his LinkedIn
+ * profile text as pasted by the user (for the current MBA).
  * Everything here is stated by one of those. Where the resume is silent (results and numbers, per-skill
  * detail, dates of the diploma, school/project stories) the value is the string "TODO", which the site
- * shows as a visible dashed TODO. Deliberately NOT used: the phone number and street address on the resume,
- * and the CGPA (the plan leaves "show it or not" to Devansh).
+ * shows as a visible dashed TODO. Deliberately NOT written on the page: the phone number and street address
+ * (they are only inside the resume PDF) and the CGPA (the plan leaves "show it or not" to Devansh).
  *
  * Rule from the plan: never invent facts. Anything unknown stays a TODO.
  */
@@ -58,13 +59,13 @@ export const content = {
     ctaWorks: "view works",
     ctaResume: "resume",
   },
-  /** Path of the resume PDF under /public, e.g. "/resume.pdf". TODO until the user confirms which file to publish. */
-  resumeUrl: TODO,
+  /** Resume PDF under /public. The file itself contains a phone number and street address; the user approved publishing it. */
+  resumeUrl: "/Devansh-Singha-Resume.pdf",
 
   /** Used for the page description and social cards. Built only from facts in the brief; swap for the approved positioning line. */
   seo: {
     description:
-      "Portfolio of Devansh Singha, a 2024 B.Tech Computer Science graduate from Jorhat, Assam, open to associate systems engineer roles. Projects: NewsX and Mobile GNS with AI.",
+      "Portfolio of Devansh Singha, a 2024 B.Tech Computer Science graduate now studying for an MBA at Amity University, Noida, open to associate systems engineer roles. Projects: NewsX and Mobile GNS with AI.",
   },
 
   positioningLine: TODO, // Step 0: three options, Devansh approves one
@@ -77,13 +78,14 @@ export const content = {
       { label: "degree", value: "b.tech computer science" },
       { label: "university", value: "assam kaziranga university, 2020 to 2024" },
       { label: "training", value: "professional diploma in data science using python, cranes varsity, bangalore" },
+      { label: "studying now", value: "mba, amity university, noida, 2025 to 2027" },
       { label: "location", value: "jorhat, assam" },
       { label: "strengths", value: "persistent, detail-oriented, analytical" },
     ],
     /** three lines, first person; Step 0 writes these */
     // Rewritten from the resume summary, first person, without naming any single company.
     about: [
-      "I am a 2024 B.Tech graduate in Computer Science and Engineering from Assam Kaziranga University, based in Jorhat, Assam.",
+      "I am a 2024 B.Tech graduate in Computer Science and Engineering from Assam Kaziranga University, and I am now studying for an MBA at Amity University, Noida.",
       "I have practical experience in Java, Python, web development and Power BI, I learn quickly and I work well in teams.",
       "I want to apply my technical and analytical skills as an associate systems engineer, using technology to solve difficult problems.",
     ],
@@ -112,6 +114,12 @@ export const content = {
         title: "professional diploma in data science using python",
         place: "cranes varsity, bangalore",
         line: "a training division of cranes software international ltd",
+      },
+      {
+        years: "2025 to 2027",
+        title: "master of business administration",
+        place: "amity university, noida",
+        line: "august 2025 to august 2027, in progress",
       },
     ] satisfies JourneyEntry[],
   },

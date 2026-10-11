@@ -29,7 +29,7 @@ export function Profile() {
 
           <ul className="mt-16 grid gap-x-12 gap-y-12 sm:grid-cols-2">
             {profile.cards.map((card, i) => (
-              <li key={card.label}>
+              <li key={card.label} className="sm:[&:last-child:nth-child(odd)]:col-span-2">
                 <p className="t-label">{card.label}</p>
                 <GoldLine className="mt-2 mb-4" delay={(i % 2) * 0.12} />
                 <InkReveal as="p" className="text-xl leading-snug font-semibold md:text-2xl" delay={(i % 2) * 0.12}>

@@ -4,7 +4,7 @@ Nothing here has been done; it needs your Vercel account and a domain decision.
 
 ## Before the first deploy
 - [ ] Replace every `TODO` in `content/content.ts` (the site shows each one in dashed underline) and add screenshots and the real portrait.
-- [ ] Put the resume PDF in `public/` and set `resumeUrl` (for example `"/resume.pdf"`).
+- [x] Resume PDF is in `public/` (`Devansh-Singha-Resume.pdf`) and `resumeUrl` points to it. Note the PDF itself contains a phone number and street address, and its summary mentions one specific employer; replace the file with an updated resume (same name) when ready.
 - [ ] Decide on `/lab` and `/styleguide`: they are `noindex` and blocked in `robots.txt`, but you can also delete `app/lab` and `app/styleguide` before launch.
 - [ ] Pick the domain (the plan suggests checking `devanshsingha.dev` or similar) and confirm it is free.
 

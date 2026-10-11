@@ -6,7 +6,7 @@ Facts only, from the brief. Replace the bracketed parts before posting, and edit
 
 I just launched my portfolio: [LIVE URL, TODO].
 
-I'm a 2024 B.Tech Computer Science graduate from Assam Kaziranga University, based in Jorhat, Assam, and I'm open to associate systems engineer roles.
+I'm a 2024 B.Tech Computer Science graduate from Assam Kaziranga University, now studying for an MBA at Amity University, Noida, and I'm open to associate systems engineer roles.
 
 I built the site as one scroll in six chapters, with a Japanese editorial look: crimson, washi cream and ink black, brush strokes that draw themselves, and shoji-door page transitions. It runs on Next.js, TypeScript, Tailwind, Lenis and GSAP, and every animation has a calm version for people who prefer reduced motion.
 

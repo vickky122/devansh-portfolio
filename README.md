@@ -21,9 +21,9 @@ tokens, and each motion primitive on its own; both are `noindex` and disallowed 
 ## Content
 
 All copy lives in [`content/content.ts`](content/content.ts). Strings equal to `"TODO"` render as a visible
-TODO, so missing copy can never pass for finished copy. Still to supply: the About lines, school names and
-one-liners for the journey, each project's problem / what was built / key decision / result / links,
-a one-liner per skill, email, LinkedIn, the resume path (`resumeUrl`), screenshots, and the real portrait art
+TODO, so missing copy can never pass for finished copy. Filled from the resume and LinkedIn text; still to
+supply: NewsX's problem / key decision / result, Mobile GNS's result, the diploma's dates, GitHub links, project
+screenshots, and the real portrait art
 (see [`docs/portrait-image-prompt.md`](docs/portrait-image-prompt.md)).
 
 ## Structure
