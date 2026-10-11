@@ -1,13 +1,15 @@
 import Image from "next/image";
 
 /**
- * The portrait: Devansh's photo, pre-processed to a 1080 x 1350 ink-and-cream duotone (public/portrait/devansh.webp),
- * seen through a tall arch with a thin gold outline offset behind it. The two <div data-layer data-depth>
- * layers drive the cursor parallax in chapters/Intro.tsx: a larger depth moves further.
+ * The portrait: Devansh cut out of his photo (transparent WebP, 1200 x 1140, ink-and-cream duotone) so the
+ * crimson ground and the giant name show around him. A thin gold ring (the sun) sits behind the head, and a
+ * soft dark shadow around the cutout lifts his light face off the cream letters. The shoulders dissolve toward
+ * the sides in the image itself, so there is no hard vertical cut. The two data-layer elements
+ * drive the cursor parallax in chapters/Intro.tsx: a larger depth moves further.
  *
- * The photo was 800 x 800, so the 1080 x 1350 file is an upscale, sharp enough for the arch's size but with
- * no extra detail. Swap in a higher-resolution original at the same path and aspect (4:5) when there is one.
- * `data-preload` makes the loader wait for the image to decode before it opens the doors.
+ * The source photo was 800 x 800, so this is an upscale: sharp at this size, no extra detail. The cutout
+ * was made with GrabCut; replace public/portrait/devansh-cutout.webp (same 1200:1140 aspect) to update it.
+ * `data-preload` makes the loader wait for the image to decode before the doors open.
  */
 export function Portrait({ className }: { className?: string }) {
   return (
@@ -16,18 +18,18 @@ export function Portrait({ className }: { className?: string }) {
         data-layer
         data-depth="0.5"
         aria-hidden="true"
-        className="absolute inset-0 translate-x-[6%] -translate-y-[3%] rounded-t-full border border-gold"
+        className="absolute top-[40%] left-[51%] aspect-square w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold"
       />
-      <div data-layer data-depth="1" className="absolute inset-0 overflow-hidden rounded-t-full border-[3px] border-sumi bg-sumi">
+      <div data-layer data-depth="1" className="absolute inset-0">
         <Image
-          src="/portrait/devansh.webp"
+          src="/portrait/devansh-cutout.webp"
           alt="Portrait of Devansh Singha"
-          width={1080}
-          height={1350}
+          width={1200}
+          height={1140}
           priority
           data-preload=""
-          sizes="(min-width: 768px) 40vh, 80vw"
-          className="h-full w-full object-cover"
+          sizes="(min-width: 768px) 700px, 540px"
+          className="h-full w-full [filter:drop-shadow(0_0_28px_rgb(22_20_18/0.5))]"
         />
       </div>
     </div>

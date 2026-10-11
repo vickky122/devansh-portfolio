@@ -1,6 +1,6 @@
 # Portrait
 
-**Current state:** `components/Portrait.tsx` shows Devansh's real photo (`public/portrait/devansh.webp`, a 1080 x 1350 ink-and-cream duotone, 4:5, upscaled from an 800 x 800 original) in an arch. To use a better photo, replace that file at the same size and aspect. The section below is the optional route to a flat-vector illustration instead.
+**Current state:** `components/Portrait.tsx` shows Devansh cut out of his photo (`public/portrait/devansh-cutout.webp`, 1200 x 1140, transparent, ink-and-cream duotone, upscaled from an 800 x 800 original). To use a better photo, replace that file at the same aspect. The section below is the optional route to a flat-vector illustration instead.
 
 ## Optional: flat-vector illustration prompt
 

@@ -147,10 +147,10 @@ export function Intro() {
           </div>
         </div>
 
-        {/* phones: the arch floats above the labels so cream text never sits on the photo; desktop: it bleeds off the bottom edge */}
-        <div data-portrait-rise className="absolute inset-x-0 bottom-[24svh] z-20 flex justify-center md:-bottom-[4svh]">
-          <div data-portrait>
-            <Portrait className="h-[42svh] w-[calc(42svh*0.8)] md:h-[68svh] md:w-[calc(68svh*0.8)]" />
+        {/* desktop: the bust stands on the bottom edge. phones: it floats above the labels and fades out, so text never sits on his face */}
+        <div data-portrait-rise className="absolute inset-x-0 bottom-[20svh] z-20 flex justify-center md:-bottom-[5svh]">
+          <div data-portrait className="max-md:[mask-image:linear-gradient(to_bottom,black_82%,transparent)]">
+            <Portrait className="h-[46svh] w-[calc(46svh*1.0526)] max-w-none shrink-0 md:h-[66svh] md:w-[calc(66svh*1.0526)]" />
           </div>
         </div>
 
