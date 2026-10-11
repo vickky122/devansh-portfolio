@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Frame } from "@/components/Frame";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/motion/gsap";
 import { MQ, motion, type MotionSet } from "@/lib/motion/motion";
+import { setText } from "@/lib/dom";
 
 type ChapterCounterProps = {
   /** shown on the left rail */
@@ -45,8 +46,8 @@ export function ChapterCounter({ siteName, total, initial }: ChapterCounterProps
           if (key === current) return;
           current = key;
 
-          counter.textContent = pad(number);
-          rail.textContent = section.dataset.chapterName ?? "";
+          setText(counter, pad(number));
+          setText(rail, section.dataset.chapterName ?? "");
           frame.dataset.tone = section.dataset.chapterTone === "ink" ? "ink" : "cream";
 
           if (!ctx.conditions?.calm) {

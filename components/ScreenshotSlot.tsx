@@ -12,6 +12,7 @@ export function ScreenshotSlot({ project, priority = false }: { project: Project
         width={project.image.width}
         height={project.image.height}
         priority={priority}
+        unoptimized={project.image.src.endsWith(".svg")}
         className="h-full w-full object-cover"
       />
     );
@@ -19,7 +20,7 @@ export function ScreenshotSlot({ project, priority = false }: { project: Project
   return (
     <div className="grid h-full w-full place-items-center border border-dashed border-washi/60 bg-sumi/30 text-washi">
       <p className="t-label text-center">
-        screenshot of {project.name.toLowerCase()} · <Copy value={TODO} />
+        image of {project.name.toLowerCase()} · <Copy value={TODO} />
       </p>
     </div>
   );

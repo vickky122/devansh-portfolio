@@ -51,11 +51,13 @@ export function LenisProvider({ children }: { children: ReactNode }) {
     };
   }, [reduced]);
 
-  // New route: start at the top and re-measure. Runs after the new page's own triggers exist.
+  // New route: scroll to its hash target or the top, and re-measure. Runs after the new page's own triggers exist.
   useEffect(() => {
     if (lastPath.current === pathname) return;
     lastPath.current = pathname;
-    lenisRef.current?.scrollTo(0, { immediate: true });
+    // a link like /#works lands on that chapter; any other route starts at the top
+    const target = window.location.hash ? document.querySelector<HTMLElement>(window.location.hash) : null;
+    lenisRef.current?.scrollTo(target ?? 0, { immediate: true });
     ScrollTrigger.refresh();
   }, [pathname]);
 

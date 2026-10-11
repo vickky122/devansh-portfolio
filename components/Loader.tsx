@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/motion/gsap";
 import { MQ, motion, type MotionSet } from "@/lib/motion/motion";
+import { setText } from "@/lib/dom";
 
 /** sessionStorage key; the inline script in app/layout.tsx reads the same one before first paint */
 const KEY = "loader-seen";
@@ -123,7 +124,7 @@ export function Loader() {
           shown = gsap.utils.interpolate(shown, target, 1 - Math.pow(0.88, gsap.ticker.deltaRatio()));
           const value = target >= 100 && shown > 99.4 ? 100 : shown;
 
-          count.textContent = String(Math.round(value)).padStart(3, "0");
+          setText(count, String(Math.round(value)).padStart(3, "0"));
           gsap.set(enso, { drawSVG: `0% ${value}%` });
 
           if (value >= 100 && !finished) {

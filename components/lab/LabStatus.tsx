@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useLenis } from "@/components/LenisProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { gsap } from "@/lib/motion/gsap";
+import { setText } from "@/lib/dom";
 
 /**
  * Live readout for /lab: reduced-motion preference, whether Lenis is driving scroll, and frames per
@@ -22,8 +23,8 @@ export function LabStatus() {
       frames++;
       const now = performance.now();
       if (now - last < 500) return;
-      if (fpsEl.current) fpsEl.current.textContent = String(Math.round((frames * 1000) / (now - last)));
-      if (lenisEl.current) lenisEl.current.textContent = lenis.current ? "lenis" : "native";
+      if (fpsEl.current) setText(fpsEl.current, String(Math.round((frames * 1000) / (now - last))));
+      if (lenisEl.current) setText(lenisEl.current, lenis.current ? "lenis" : "native");
       frames = 0;
       last = now;
     };

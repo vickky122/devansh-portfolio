@@ -1,17 +1,13 @@
 import { ChapterCounter } from "@/components/ChapterCounter";
 import { Loader } from "@/components/Loader";
-import dynamic from "next/dynamic";
+import { Contact } from "@/chapters/Contact";
+import { Craft } from "@/chapters/Craft";
 import { Intro } from "@/chapters/Intro";
+import { Journey } from "@/chapters/Journey";
 import { Profile } from "@/chapters/Profile";
+import { Works } from "@/chapters/Works";
 import { content } from "@/content/content";
 import { siteUrl } from "@/lib/site";
-
-// Below the fold: still server-rendered (the HTML is all there), but their JavaScript loads separately
-// from the first paint's.
-const Journey = dynamic(() => import("@/chapters/Journey").then((m) => m.Journey));
-const Works = dynamic(() => import("@/chapters/Works").then((m) => m.Works));
-const Craft = dynamic(() => import("@/chapters/Craft").then((m) => m.Craft));
-const Contact = dynamic(() => import("@/chapters/Contact").then((m) => m.Contact));
 
 const siteName = `${content.name.first} ${content.name.last}`.toLowerCase();
 
@@ -20,6 +16,7 @@ const personJsonLd = {
   "@type": "Person",
   name: `${content.name.first} ${content.name.last}`,
   url: siteUrl,
+  sameAs: [content.contact.linkedin],
   description: content.seo.description,
   address: { "@type": "PostalAddress", addressLocality: "Jorhat", addressRegion: "Assam", addressCountry: "IN" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Assam Kaziranga University" },

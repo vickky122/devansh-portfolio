@@ -1,11 +1,9 @@
 /**
- * STUB — this is NOT the Step 0 content.ts.
- *
- * The real content.ts was not in the project folder when the scaffold was made. This file carries only
- * what the brief and the build plan state outright (education, project names and one-line descriptions,
- * skills, hobbies, chapter names). Everything else is the string "TODO", rendered visibly on the page.
- * Replace the whole file with the real one when Step 0 is answered; the shapes below are what the
- * chapters read, so keep the field names.
+ * Site content. Source: the build plan, the brief, and Devansh's resume (DevanshSinghaResume.pdf).
+ * Everything here is stated by one of those. Where the resume is silent (results and numbers, per-skill
+ * detail, dates of the diploma, school/project stories) the value is the string "TODO", which the site
+ * shows as a visible dashed TODO. Deliberately NOT used: the phone number and street address on the resume,
+ * and the CGPA (the plan leaves "show it or not" to Devansh).
  *
  * Rule from the plan: never invent facts. Anything unknown stays a TODO.
  */
@@ -78,22 +76,43 @@ export const content = {
       { label: "role", value: "associate systems engineer" },
       { label: "degree", value: "b.tech computer science" },
       { label: "university", value: "assam kaziranga university, 2020 to 2024" },
-      { label: "training", value: "data science diploma, cranes varsity" },
+      { label: "training", value: "professional diploma in data science using python, cranes varsity, bangalore" },
       { label: "location", value: "jorhat, assam" },
       { label: "strengths", value: "persistent, detail-oriented, analytical" },
     ],
     /** three lines, first person; Step 0 writes these */
-    about: [TODO, TODO, TODO],
+    // Rewritten from the resume summary, first person, without naming any single company.
+    about: [
+      "I am a 2024 B.Tech graduate in Computer Science and Engineering from Assam Kaziranga University, based in Jorhat, Assam.",
+      "I have practical experience in Java, Python, web development and Power BI, I learn quickly and I work well in teams.",
+      "I want to apply my technical and analytical skills as an associate systems engineer, using technology to solve difficult problems.",
+    ],
   },
 
   /** Chapter 03. Entries and their years are from the plan; places and one-liners are Step 0. */
   journey: {
     title: "journey",
     entries: [
-      { years: "2017", title: "high school", place: TODO, line: TODO },
-      { years: "2018 to 2020", title: "higher secondary", place: TODO, line: TODO },
-      { years: "2020 to 2024", title: "b.tech computer science", place: "assam kaziranga university", line: TODO },
-      { years: TODO, title: "data science diploma", place: "cranes varsity", line: TODO },
+      { years: "2017", title: "high school", place: "springdale high school", line: "cinnamara, jorhat, assam" },
+      {
+        years: "2018 to 2020",
+        title: "higher secondary, science",
+        place: "pragjyotika junior college",
+        line: "titabar, jorhat, assam",
+      },
+      {
+        years: "2020 to 2024",
+        title: "b.tech computer science and engineering",
+        place: "assam kaziranga university",
+        line: "jorhat, assam",
+      },
+      // The resume lists this under training and gives no dates, so the year slot says "training" until Devansh supplies them.
+      {
+        years: "training",
+        title: "professional diploma in data science using python",
+        place: "cranes varsity, bangalore",
+        line: "a training division of cranes software international ltd",
+      },
     ] satisfies JourneyEntry[],
   },
 
@@ -104,10 +123,16 @@ export const content = {
       {
         slug: "newsx",
         name: "NewsX",
-        tagline: "python and tkinter news app",
+        image: {
+          src: "/works/newsx.svg",
+          alt: "Original illustration for NewsX: newspaper columns and a headline in crimson, cream and ink. Not a screenshot.",
+          width: 1600,
+          height: 1000,
+        },
+        tagline: "a news fetching app in python with a tkinter interface",
         tags: ["python", "tkinter"],
-        problem: TODO,
-        built: TODO,
+        problem: TODO, // the resume does not say what problem NewsX set out to solve
+        built: "A news fetching application, written in Python with the Tkinter GUI library.",
         decision: TODO,
         result: TODO,
         flow: [],
@@ -116,13 +141,21 @@ export const content = {
       {
         slug: "mobile-gns",
         name: "Mobile GNS with AI",
-        tagline: "cross-platform network simulator with ai debugging",
-        tags: ["cross-platform", "network simulator", "ai debugging"],
-        problem: TODO,
-        built: TODO,
-        decision: TODO,
-        result: TODO,
-        // The plan's Step 6 draws this flow; confirm it with Devansh before it ships.
+        image: {
+          src: "/works/mobile-gns.svg",
+          alt: "Original illustration for Mobile GNS with AI: a phone at the centre of a network of nodes. Not a screenshot.",
+          width: 1600,
+          height: 1000,
+        },
+        tagline: "a graphical network simulator for android and ios, with ai debugging",
+        tags: ["android", "ios", "network simulator", "openai api"],
+        problem:
+          "Fixing network errors is hard to learn. This simulator was built for students, so they can practise on a phone and learn while they fix.",
+        built:
+          "A Graphical Network Simulator (GNS) for mobile, cross-platform on Android and iOS, giving real-time network simulation.",
+        decision:
+          "To debug and fix errors, it calls the API of a popular AI tool, ChatGPT from OpenAI, so fixing a network error and learning from it happen together.",
+        result: TODO, // no measured result (users, accuracy, time saved) on the resume
         flow: ["user", "simulator", "ai debugging api", "fix suggestion"],
         links: [],
       },
@@ -133,11 +166,11 @@ export const content = {
   craft: {
     title: "craft",
     skills: [
-      { name: "Java", line: TODO },
-      { name: "Python", line: TODO },
-      { name: "Data Science", line: TODO },
-      { name: "Power BI", line: TODO },
-      { name: "MS Excel and Office", line: TODO },
+      { name: "Java", line: "Practical experience, listed first among my technical skills." },
+      { name: "Python", line: "Practical experience, including NewsX, built with Python and the Tkinter GUI library." },
+      { name: "Data Science", line: "A professional diploma in Data Science using Python, at Cranes Varsity in Bangalore." },
+      { name: "Power BI", line: "Practical experience, alongside Java, Python and web development." },
+      { name: "MS Excel and Office", line: "MS Excel, PowerPoint and MS Word." },
     ] satisfies Skill[],
   },
 
@@ -145,9 +178,9 @@ export const content = {
   contact: {
     title: "contact",
     heading: "let's build something together.",
-    email: TODO,
-    linkedin: TODO,
-    github: TODO,
+    email: "officialdevanshsingha@gmail.com",
+    linkedin: "https://www.linkedin.com/in/dev24k",
+    github: TODO, // not on the resume; not shown anywhere until supplied
     hobbies: "basketball, badminton, esports and travelling",
     footer: "made with care in jorhat",
   },

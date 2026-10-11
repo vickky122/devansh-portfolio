@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useLenis } from "@/components/LenisProvider";
 import { content } from "@/content/content";
+import { setText } from "@/lib/dom";
 
 const IST = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Kolkata",
@@ -22,7 +23,7 @@ export function Footer() {
 
   useEffect(() => {
     const tick = () => {
-      if (clock.current) clock.current.textContent = IST.format(new Date());
+      if (clock.current) setText(clock.current, IST.format(new Date()));
     };
     tick();
     const id = setInterval(tick, 15_000);
