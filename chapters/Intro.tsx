@@ -106,6 +106,7 @@ export function Intro() {
   return (
     <section
       ref={section}
+      id="intro"
       data-chapter="1"
       data-chapter-name="intro"
       className="surface-crimson relative h-[200svh] motion-reduce:h-svh"

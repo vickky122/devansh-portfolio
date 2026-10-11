@@ -46,7 +46,7 @@ export function Footer() {
         ist · jorhat
       </p>
       <p>{content.contact.footer}</p>
-      <button type="button" onClick={toTop} className="justify-self-start underline underline-offset-4 md:justify-self-end">
+      <button type="button" onClick={toTop} className="link-brush justify-self-start md:justify-self-end">
         back to top
       </button>
     </footer>

@@ -4,8 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Copy } from "@/components/Copy";
 import { content, isTodo } from "@/content/content";
 
-const linkClass =
-  "underline decoration-washi/60 underline-offset-8 transition-colors duration-(--dur-micro) hover:decoration-washi";
+const linkClass = "link-brush";
 
 /**
  * Contact links styled as paths: ./email (copies the address and shows a small toast), ./linkedin,

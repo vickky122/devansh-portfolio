@@ -113,7 +113,7 @@ export function Craft() {
               data-card
               tabIndex={0}
               onFocus={() => reveal(i)}
-              className="surface-sumi flex flex-col justify-between gap-8 border border-washi/40 p-8 md:p-12 stack:absolute stack:inset-0"
+              className="surface-sumi flex flex-col justify-between gap-8 border border-washi/40 p-8 transition-colors duration-(--dur-ui) hover:border-washi md:p-12 stack:absolute stack:inset-0"
             >
               <p className="font-display text-[clamp(5rem,12vw,10rem)] leading-none text-crimson" aria-hidden="true">
                 {String(i + 1).padStart(2, "0")}

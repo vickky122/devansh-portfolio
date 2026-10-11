@@ -90,7 +90,7 @@ export default function StyleguidePage() {
             Palette, type, frame and the ink reveal in one place. The bar above switches the paper grain on and off so you
             can compare.
           </p>
-          <Link href="/" className="t-label mt-6 inline-block underline underline-offset-4">
+          <Link href="/" className="t-label link-brush mt-6 inline-block">
             back to the site
           </Link>
         </header>

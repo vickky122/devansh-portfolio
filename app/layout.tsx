@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Manrope, JetBrains_Mono } from "next/font/google";
 import { Cursor } from "@/components/Cursor";
 import { LenisProvider } from "@/components/LenisProvider";
+import { Nav } from "@/components/Nav";
 import { ShojiProvider } from "@/components/ShojiTransition";
 import "./globals.css";
 
@@ -48,7 +49,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{`[data-ink] { visibility: visible !important; } .loader { display: none !important; }`}</style>
         </noscript>
         <LenisProvider>
-          <ShojiProvider>{children}</ShojiProvider>
+          <ShojiProvider>
+            <Nav />
+            {children}
+          </ShojiProvider>
         </LenisProvider>
         <Cursor />
       </body>

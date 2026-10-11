@@ -97,6 +97,38 @@
     --edge: var(--crimson);
   }
 
+  /*
+   * Link hover: a brush stroke under the text. At rest it is a short dab (an affordance, not a static
+   * underline); on hover or keyboard focus it draws out to the full width. Transform only.
+   */
+  .link-brush {
+    position: relative;
+    display: inline-block;
+  }
+  .link-brush::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: calc(var(--brush-h, 5px) * -1.4);
+    left: 0;
+    height: var(--brush-h, 5px);
+    background: currentColor;
+    transform: scaleX(0.16);
+    transform-origin: left;
+    transition: transform var(--dur-ui) var(--ease-out);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4C10 1 25 6 40 3S70 5 85 2S98 4 100 3L100 6C90 8 70 5 55 7S20 5 8 7S2 6 0 5Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 8' preserveAspectRatio='none'%3E%3Cpath d='M0 4C10 1 25 6 40 3S70 5 85 2S98 4 100 3L100 6C90 8 70 5 55 7S20 5 8 7S2 6 0 5Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  }
+  .link-brush:hover::after,
+  .link-brush:focus-visible::after {
+    transform: scaleX(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .link-brush::after {
+      transition: none;
+    }
+  }
+
   /* content still marked TODO in content.ts: unmistakable, never passable as real copy */
   .todo {
     text-decoration: underline dashed;

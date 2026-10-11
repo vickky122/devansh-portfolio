@@ -56,13 +56,13 @@ export default function LabPage() {
         <p className="t-label">cursor · a fine pointer only, hidden on touch</p>
         <h2 className="t-h2">Hover the links</h2>
         <div className="t-label flex flex-wrap gap-8">
-          <Link href="/" className="underline underline-offset-4">
+          <Link href="/" className="link-brush">
             ./home
           </Link>
-          <Link href="/styleguide" className="underline underline-offset-4">
+          <Link href="/styleguide" className="link-brush">
             ./styleguide
           </Link>
-          <button type="button" className="underline underline-offset-4">
+          <button type="button" className="link-brush">
             ./button
           </button>
         </div>

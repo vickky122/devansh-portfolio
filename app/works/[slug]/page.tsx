@@ -69,7 +69,7 @@ async function Project({ params }: Pick<PageProps<"/works/[slug]">, "params">) {
           className="surface-crimson px-10 pt-36 pb-24 md:px-28 md:pt-48"
         >
           <div className="mx-auto max-w-6xl">
-            <ShojiLink href="/#works" className="t-label underline underline-offset-4">
+            <ShojiLink href="/#works" className="t-label link-brush">
               all works
             </ShojiLink>
             <InkReveal
@@ -139,7 +139,7 @@ async function Project({ params }: Pick<PageProps<"/works/[slug]">, "params">) {
                 <ul className="t-label flex flex-wrap gap-6">
                   {project.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} className="underline underline-offset-4">
+                      <a href={link.href} className="link-brush">
                         ./{link.label}
                       </a>
                     </li>
@@ -162,7 +162,7 @@ async function Project({ params }: Pick<PageProps<"/works/[slug]">, "params">) {
         >
           <span className="mx-auto block max-w-6xl">
             <span className="t-label block">next project</span>
-            <span className="t-h1 mt-6 block" style={{ fontSize: "clamp(2.75rem, 9vw, 8.5rem)" }}>
+            <span className="t-h1 link-brush mt-6 block" style={{ fontSize: "clamp(2.75rem, 9vw, 8.5rem)" }}>
               {next.name}
             </span>
           </span>
