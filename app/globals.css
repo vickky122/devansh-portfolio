@@ -29,6 +29,11 @@
 @layer base {
   html {
     background: var(--washi);
+    /* the native scrollbar would sit on top of the frame's right-hand label; the counter shows position instead */
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
   }
 
   body {

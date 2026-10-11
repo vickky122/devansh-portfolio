@@ -34,7 +34,7 @@ export function Nav() {
           if (hide === hidden) return;
           hidden = hide;
           if (ctx.conditions?.calm) gsap.set(el, { autoAlpha: hide ? 0 : 1 });
-          else gsap.to(el, { yPercent: hide ? -160 : 0, duration: m.duration.ui, ease: m.ease.ui, overwrite: "auto" });
+          else gsap.to(el, { y: hide ? -(el.offsetTop + el.offsetHeight + 8) : 0, duration: m.duration.ui, ease: m.ease.ui, overwrite: "auto" });
         };
         const st = ScrollTrigger.create({
           start: 0,
@@ -104,7 +104,7 @@ export function Nav() {
         aria-modal="true"
         aria-label="chapters"
         hidden={!open}
-        className="surface-sumi fixed inset-0 z-60 grid place-items-center px-10"
+        className="surface-sumi fixed inset-0 z-45 grid place-items-center px-10"
       >
         <ol className="space-y-2">
           {content.chapters.map((chapter) => (

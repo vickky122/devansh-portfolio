@@ -27,6 +27,11 @@ type InkRevealProps = {
 function buildInk(lines: HTMLElement[], m: MotionSet, delay: number) {
   const tl = gsap.timeline({ paused: true, delay });
   gsap.set(lines, { width: "fit-content", position: "relative" });
+  // shrink-wrapped lines would otherwise ignore the parent's text-align and hug the left edge
+  const parent = lines[0]?.parentElement;
+  const align = parent ? getComputedStyle(parent).textAlign : "start";
+  if (align === "right" || align === "end") gsap.set(lines, { marginLeft: "auto" });
+  else if (align === "center") gsap.set(lines, { marginLeft: "auto", marginRight: "auto" });
 
   lines.forEach((line, i) => {
     const edge = document.createElement("span");

@@ -59,7 +59,9 @@ export function Craft() {
           });
           cards.slice(1).forEach((card, i) => {
             tl.to(card, { yPercent: 0, ease: m.ease.scrub, duration: 1 }, i);
-            tl.to(cards[i], { scale: 0.94, y: -28, opacity: 0.45, ease: m.ease.scrub, duration: 1 }, i);
+            // the card stays fully opaque (so the cards behind never show through); only its contents dim
+            tl.to(cards[i], { scale: 0.94, y: -28, ease: m.ease.scrub, duration: 1 }, i);
+            tl.to(cards[i].children, { opacity: 0.4, ease: m.ease.scrub, duration: 1 }, i);
           });
           tl.fromTo(q("[data-progress]"), { scaleX: 0 }, { scaleX: 1, ease: "none", duration: n - 1 }, 0);
           tl.to({}, { duration: HOLD });
