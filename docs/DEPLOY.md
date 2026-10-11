@@ -1,8 +1,7 @@
 # Deploy to Vercel: checklist
 
-Status: the repo is on GitHub (private) at `vickky122/devansh-portfolio`, and Vercel (your Hobby account,
-"Vikrant Yadav's projects") already sees it on https://vercel.com/new. **Nothing is deployed yet.** Verified in
-the Vercel UI: it auto-detects the **Next.js** preset, root directory `./`, branch `main`, and needs no build
+Status: **deployed.** The repo is on GitHub (private) at `vickky122/devansh-portfolio` and Vercel (Hobby account,
+"Vikrant Yadav's projects") builds every push to `main`. Verified in the Vercel UI: it auto-detects the **Next.js** preset, root directory `./`, branch `main`, and needs no build
 settings changes.
 
 ## 1. First deploy (about 2 minutes)
@@ -11,17 +10,17 @@ settings changes.
 3. Press **Deploy**. When it finishes, Vercel shows the live address, normally `https://devansh-portfolio.vercel.app`
    (it adds a suffix if that name is taken).
 
-## 2. Tell the site its own address (important, do right after the first deploy)
-Without this, the sitemap, canonical URL, Open Graph card and structured data all point at `http://localhost:3000`.
-1. Vercel, Project, **Settings, Environment Variables**: add `NEXT_PUBLIC_SITE_URL` = the live address from step 1
-   (no trailing slash), for Production (and Preview if you like).
-2. **Redeploy** (Deployments, the latest one, Redeploy). `NEXT_PUBLIC_*` values are baked in at build time, so a
-   redeploy is required for the change to take effect.
+## 2. The site's own address (handled automatically)
+`lib/site.ts` uses Vercel's `VERCEL_PROJECT_PRODUCTION_URL` (the custom domain once attached, otherwise the
+`*.vercel.app` address), so the sitemap, canonical URL, Open Graph card and structured data are correct without any
+setting. Set `NEXT_PUBLIC_SITE_URL` only if you want to force a different address.
+
+Live production address (first deploy): https://devansh-portfolio-theta-nine.vercel.app
 
 ## 3. Custom domain (optional, can come later)
 1. Pick a domain (the plan suggests checking `devanshsingha.dev` or similar) and buy it from any registrar.
 2. Vercel, Project, **Settings, Domains**: add it and set the DNS records Vercel shows. Wait for the certificate.
-3. Change `NEXT_PUBLIC_SITE_URL` to the new domain and redeploy once more.
+3. Nothing else to change: the next deploy picks the new domain up automatically.
 
 ## Things to decide first
 - [ ] **Resume PDF:** `public/Devansh-Singha-Resume.pdf` is in the repo and will be public once deployed
