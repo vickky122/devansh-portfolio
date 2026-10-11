@@ -77,7 +77,7 @@ export function Nav() {
       <nav
         ref={bar}
         aria-label="primary"
-        className="surface-sumi fixed top-[calc(var(--frame-inset)+0.75rem)] left-1/2 z-70 flex -translate-x-1/2 items-center gap-6 border border-washi/30 px-5 py-1"
+        className="surface-sumi fixed top-[calc(var(--frame-inset)+0.75rem)] left-1/2 z-70 flex -translate-x-1/2 items-center gap-4 border border-washi/30 px-3 py-1 md:gap-6 md:px-5"
       >
         <button
           ref={button}

@@ -1,52 +1,35 @@
+import Image from "next/image";
+
 /**
- * PLACEHOLDER portrait: an abstract ink-and-gold silhouette in layers, so the intro's depth and
- * parallax can be built and judged before the real illustration exists. It deliberately depicts
- * no one. Replace the layers with the real flat vector art (see docs/portrait-image-prompt.md),
- * keeping the <g data-layer data-depth> structure so the parallax keeps working.
+ * The portrait: Devansh's photo, pre-processed to a 1080 x 1350 ink-and-cream duotone (public/portrait/devansh.webp),
+ * seen through a tall arch with a thin gold outline offset behind it. The two <div data-layer data-depth>
+ * layers drive the cursor parallax in chapters/Intro.tsx: a larger depth moves further.
  *
- * Depth: a layer with a larger data-depth moves further with the cursor.
+ * The photo was 800 x 800, so the 1080 x 1350 file is an upscale, sharp enough for the arch's size but with
+ * no extra detail. Swap in a higher-resolution original at the same path and aspect (4:5) when there is one.
+ * `data-preload` makes the loader wait for the image to decode before it opens the doors.
  */
 export function Portrait({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 600 800"
-      className={className}
-      role="img"
-      aria-label="Illustrated portrait placeholder"
-      fill="none"
-    >
-      {/* shoulders and jacket */}
-      <g data-layer data-depth="0.4">
-        <path
-          d="M0 800V700C10 640 90 600 200 578H400C510 600 590 640 600 700V800Z"
-          className="fill-sumi"
+    <div className={`relative ${className ?? ""}`}>
+      <div
+        data-layer
+        data-depth="0.5"
+        aria-hidden="true"
+        className="absolute inset-0 translate-x-[6%] -translate-y-[3%] rounded-t-full border border-gold"
+      />
+      <div data-layer data-depth="1" className="absolute inset-0 overflow-hidden rounded-t-full border-[3px] border-sumi bg-sumi">
+        <Image
+          src="/portrait/devansh.webp"
+          alt="Portrait of Devansh Singha"
+          width={1080}
+          height={1350}
+          priority
+          data-preload=""
+          sizes="(min-width: 768px) 40vh, 80vw"
+          className="h-full w-full object-cover"
         />
-        <path d="M200 578L255 800M400 578L345 800" className="stroke-gold" strokeWidth="1.5" />
-      </g>
-
-      {/* neck */}
-      <g data-layer data-depth="0.7">
-        <path d="M255 480H345L352 590C325 625 275 625 248 590Z" className="fill-sumi" />
-      </g>
-
-      {/* head and hair */}
-      <g data-layer data-depth="1">
-        <path
-          d="M300 140C392 140 428 220 424 300C420 392 372 480 300 506C228 480 180 392 176 300C172 220 208 140 300 140Z"
-          className="fill-sumi"
-        />
-        <path
-          d="M172 300C150 170 230 98 308 104C402 104 452 190 428 300C424 232 396 178 312 176C232 176 190 230 172 300Z"
-          className="fill-sumi"
-        />
-      </g>
-
-      {/* fine detail: gold contour, cream collar and a hair highlight */}
-      <g data-layer data-depth="1.4">
-        <path d="M424 300C420 392 372 480 300 506" className="stroke-gold" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M200 190C230 140 290 118 340 124" className="stroke-washi" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-        <path d="M230 580L300 690L370 580" className="stroke-washi" strokeWidth="3" strokeLinejoin="round" />
-      </g>
-    </svg>
+      </div>
+    </div>
   );
 }

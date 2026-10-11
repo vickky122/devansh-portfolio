@@ -1,7 +1,11 @@
-# Portrait: image-tool prompt
+# Portrait
 
-The intro currently uses an abstract placeholder (`components/Portrait.tsx`). To replace it with a real
-flat vector portrait of Devansh, give an image tool a clear, front-facing photo (plain background) and this prompt.
+**Current state:** `components/Portrait.tsx` shows Devansh's real photo (`public/portrait/devansh.webp`, a 1080 x 1350 ink-and-cream duotone, 4:5, upscaled from an 800 x 800 original) in an arch. To use a better photo, replace that file at the same size and aspect. The section below is the optional route to a flat-vector illustration instead.
+
+## Optional: flat-vector illustration prompt
+
+To replace the photo with a
+flat vector portrait of Devansh instead, give an image tool a clear, front-facing photo (plain background) and this prompt.
 
 ```
 Turn the attached photo into a flat vector editorial portrait, front-facing, head and shoulders,

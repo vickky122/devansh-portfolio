@@ -147,17 +147,17 @@ export function Intro() {
           </div>
         </div>
 
-        {/* bleeds below the stage so the shoulders still meet the bottom edge after the portrait lifts */}
-        <div data-portrait-rise className="absolute inset-x-0 -bottom-[8svh] z-20 flex justify-center">
+        {/* phones: the arch floats above the labels so cream text never sits on the photo; desktop: it bleeds off the bottom edge */}
+        <div data-portrait-rise className="absolute inset-x-0 bottom-[24svh] z-20 flex justify-center md:-bottom-[4svh]">
           <div data-portrait>
-            <Portrait className="h-[72svh] w-auto max-w-none md:h-[78svh]" />
+            <Portrait className="h-[42svh] w-[calc(42svh*0.8)] md:h-[68svh] md:w-[calc(68svh*0.8)]" />
           </div>
         </div>
 
         {/* small labels */}
         <div
           data-intro-scrubfade
-          className="absolute top-[calc(var(--frame-inset)+1.25rem)] left-[calc(var(--frame-inset)+1.25rem)] z-30 md:top-[calc(var(--frame-inset)+2rem)] md:left-[calc(var(--frame-inset)+2.5rem)]"
+          className="absolute top-[calc(var(--frame-inset)+3.5rem)] left-[calc(var(--frame-inset)+1.25rem)] z-30 md:top-[calc(var(--frame-inset)+2rem)] md:left-[calc(var(--frame-inset)+2.5rem)]"
         >
           <p
             data-intro-item
